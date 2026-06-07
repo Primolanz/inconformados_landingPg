@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inconformados — Escola de Missões</title>
+    <!-- Google Fonts: Bebas Neue para pegada urbana e Montserrat para legibilidade -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#E5A910', // Amarelo Mostarda vibrante extraído da logo
+                            yellowDark: '#C48E0B',
+                            black: '#0D0D0D', // Preto profundo
+                            grayDark: '#1A1A1A', // Grafite Escuro
+                            grayLight: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        urban: ['Bebas Neue', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-black text-white font-sans antialiased selection:bg-brand-yellow selection:text-brand-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logotipo Vetorial Integrado -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-105">
+                    <!-- Triângulo Invertido de Fundo -->
+                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brand-yellow fill-current">
+                        <polygon points="10,20 90,20 50,90"/>
+                    </svg>
+                    <!-- Silhueta da Igreja e Prédios Urbanos com Cruz -->
+                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-white fill-current p-1.5 z-10">
+                        <!-- Prédio Esquerda -->
+                        <rect x="25" y="45" width="10" height="25" />
+                        <rect x="27" y="48" width="2" height="3" class="text-brand-black fill-current" />
+                        <rect x="31" y="48" width="2" height="3" class="text-brand-black fill-current" />
+                        <rect x="27" y="55" width="2" height="3" class="text-brand-black fill-current" />
+                        <rect x="31" y="55" width="2" height="3" class="text-brand-black fill-current" />
+                        
+                        <!-- Igreja Central -->
+                        <path d="M 43 35 L 50 25 L 57 35 L 57 70 L 43 70 Z" />
+                        <!-- Cruz no Topo -->
+                        <rect x="49" y="15" width="2" height="11" class="text-white fill-current" />
+                        <rect x="46" y="18" width="8" height="2" class="text-white fill-current" />
+                        <!-- Porta da Igreja -->
+                        <path d="M 47 62 A 3 3 0 0 1 53 62 L 53 70 L 47 70 Z" class="text-brand-black fill-current" />
+
+                        <!-- Prédio Direita -->
+                        <rect x="61" y="38" width="14" height="32" />
+                        <!-- Detalhes do Prédio da Direita -->
+                        <rect x="64" y="42" width="3" height="4" class="text-brand-black fill-current" />
+                        <rect x="69" y="42" width="3" height="4" class="text-brand-black fill-current" />
+                        <rect x="64" y="49" width="3" height="4" class="text-brand-black fill-current" />
+                        <rect x="69" y="49" width="3" height="4" class="text-brand-black fill-current" />
+                        <rect x="64" y="56" width="3" height="4" class="text-brand-black fill-current" />
+                        <rect x="69" y="56" width="3" height="4" class="text-brand-black fill-current" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-urban text-2xl tracking-wider text-brand-yellow leading-none">INCONFORMADOS</span>
+                    <span class="font-sans text-[10px] font-bold tracking-[0.25em] text-white/80 leading-tight">ESCOLA DE MISSÕES</span>
+                </div>
+            </a>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm tracking-wider">
+                <a href="#conferencia" class="text-white/80 hover:text-brand-yellow transition-colors">CONFERÊNCIA</a>
+                <a href="#manifesto" class="text-white/80 hover:text-brand-yellow transition-colors">O MANIFESTO</a>
+                <a href="#frentes" class="text-white/80 hover:text-brand-yellow transition-colors">ATUAÇÃO PRÁTICA</a>
+                <a href="#grade" class="text-white/80 hover:text-brand-yellow transition-colors">GRADE CURRICULAR</a>
+            </nav>
+
+            <!-- CTA Header -->
+            <div class="flex items-center gap-4">
+                <a href="#inscricao" class="hidden sm:inline-flex bg-brand-yellow hover:bg-brand-yellowDark text-brand-black font-bold uppercase tracking-wider text-xs px-5 py-3 rounded-md transition-all transform hover:scale-[1.02] shadow-lg shadow-brand-yellow/15">
+                    Matricular-se
+                </a>
+                
+                <!-- Hamburguer Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-white hover:text-brand-yellow focus:outline-none" aria-label="Menu principal">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Lateral Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-black/95 border-b border-white/10 px-4 pt-2 pb-6 space-y-4">
+            <a href="#conferencia" class="block text-lg font-bold text-white/90 hover:text-brand-yellow py-2 border-b border-white/5">CONFERÊNCIA</a>
+            <a href="#manifesto" class="block text-lg font-bold text-white/90 hover:text-brand-yellow py-2 border-b border-white/5">O MANIFESTO</a>
+            <a href="#frentes" class="block text-lg font-bold text-white/90 hover:text-brand-yellow py-2 border-b border-white/5">ATUAÇÃO PRÁTICA</a>
+            <a href="#grade" class="block text-lg font-bold text-white/90 hover:text-brand-yellow py-2 border-b border-white/5">GRADE CURRICULAR</a>
+            <a href="#inscricao" class="block text-center bg-brand-yellow text-brand-black font-bold py-3 rounded-md uppercase tracking-wider text-sm shadow-md">FAÇA SUA INSCRIÇÃO!</a>
+        </div>
+    </header>
+
+    <!-- SEÇÃO 1: HERO / CAPA PRINCIPAL -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden grid-bg pt-12 pb-24">
+        <!-- Detalhes geométricos de fundo inspirados no triângulo da marca -->
+        <div class="absolute top-1/4 -right-24 w-96 h-96 bg-brand-yellow/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/10 -left-24 w-80 h-80 bg-brand-yellow/5 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Selo de Inscrições Abertas -->
+            <div class="inline-flex items-center gap-2 bg-brand-yellow/15 border border-brand-yellow/30 px-4 py-2 rounded-full text-brand-yellow text-xs font-bold tracking-widest uppercase mb-8 animate-pulse">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-yellow"></span>
+                Inscrições Abertas para Turma 2026
+            </div>
+
+            <!-- Grande Título de Impacto Urbano -->
+            <h1 class="font-urban text-6xl sm:text-8xl md:text-9xl tracking-tight leading-none mb-4 uppercase">
+                INCONFORMADOS<br>
+                <span class="text-brand-yellow">ESCOLA DE MISSÕES</span>
+            </h1>
+
+            <!-- Subtítulo Inspirador -->
+            <p class="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-neutral-300 font-light leading-relaxed mb-8">
+                Uma nova história vai começar. Uma chama está sendo reacendida para incendiar corações que não aceitam viver uma fé comum. 
+            </p>
+
+            <!-- Slogan Central Grafite / Banner -->
+            <div class="max-w-2xl mx-auto bg-brand-grayDark border-l-4 border-brand-yellow px-6 py-4 rounded-r-md shadow-xl mb-12 transform -skew-x-3">
+                <p class="font-urban text-2xl sm:text-3xl text-brand-yellow tracking-wide uppercase italic">
+                    "Uma mente inconformada para uma cidade transformada."
+                </p>
+            </div>
+
+            <!-- CTA Principal Botões -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#inscricao" class="w-full sm:w-auto bg-brand-yellow hover:bg-brand-yellowDark text-brand-black font-black uppercase tracking-widest text-sm px-8 py-5 rounded shadow-lg shadow-brand-yellow/20 hover:shadow-brand-yellow/35 transition-all transform hover:scale-[1.03] active:scale-95 duration-250">
+                    FAÇA SUA INSCRIÇÃO!
+                </a>
+                <a href="#conferencia" class="w-full sm:w-auto bg-transparent hover:bg-white/5 border border-white/30 hover:border-brand-yellow text-white font-bold uppercase tracking-widest text-sm px-8 py-5 rounded transition-all duration-200">
+                    Ver Conferência (13/06)
+                </a>
+            </div>
+
+            <!-- Triângulo Indicador de Scroll -->
+            <div class="mt-16 flex justify-center animate-bounce">
+                <a href="#conferencia" aria-label="Ir para a Conferência">
+                    <svg class="w-6 h-6 text-brand-yellow/60 hover:text-brand-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: DESTAQUE PRINCIPAL — CONFERÊNCIA MISSIONÁRIA INCONFORMADOS -->
+    <section id="conferencia" class="py-24 bg-brand-grayDark/50 border-t border-b border-white/5 relative">
+        <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Título da Seção -->
+            <div class="text-center mb-16">
+                <span class="text-brand-yellow text-sm font-black uppercase tracking-widest">A Noite Mais Esperada</span>
+                <h2 class="font-urban text-5xl sm:text-7xl mt-2 tracking-wide uppercase">CONFERÊNCIA MISSIONÁRIA</h2>
+                <div class="w-24 h-1.5 bg-brand-yellow mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Caixa de Altíssimo Impacto Visual -->
+            <div class="bg-brand-black border-2 border-brand-yellow rounded-2xl overflow-hidden shadow-2xl shadow-brand-yellow/5 grid grid-cols-1 lg:grid-cols-12 gap-0 relative">
+                <!-- Tarja Diagonal "URGENTE/IMPERDÍVEL" -->
+                <div class="absolute top-6 right-6 bg-brand-yellow text-brand-black text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider z-20 shadow">
+                    Vagas Limitadas
+                </div>
+
+                <!-- Lado Esquerdo: Imagem Teatral/Identidade do Preletor -->
+                <div class="lg:col-span-5 bg-neutral-900 flex flex-col justify-between p-8 sm:p-12 relative min-h-[400px] border-b lg:border-b-0 lg:border-r border-brand-yellow/30 overflow-hidden">
+                    <!-- Textura urbana sutil ao fundo -->
+                    <div class="absolute inset-0 opacity-10 font-urban text-9xl text-white select-none pointer-events-none font-black flex items-center justify-center rotate-12">
+                        <img src="imagens/conferencia.jpg" alt="img-conferencia">
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <span class="bg-white/10 backdrop-blur-md text-white text-xs font-bold px-3.5 py-1.5 rounded-md uppercase tracking-widest">
+                            Preletor Confirmado
+                        </span>
+                        <h3 class="font-urban text-6xl sm:text-7xl text-brand-yellow mt-4 leading-none uppercase">
+                            JOÃO<br>BASQUES
+                        </h3>
+                        <p class="text-neutral-400 font-semibold tracking-wider text-sm mt-1 uppercase">Evangelista & Missionário</p>
+                    </div>
+
+                    <!-- Rodapé do Card do Preletor -->
+                    <div class="relative z-10 border-t border-white/10 pt-6 mt-8">
+                        <p class="text-xs text-white/60 uppercase tracking-widest leading-relaxed">
+                            "Despertando vocações urbanas para inflamar as cidades brasileiras com o mover do Espírito Santo."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: Informações e Cronograma Oficial -->
+                <div class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
+                    <div>
+                        <!-- Detalhes Rápidos (Grid de Informações) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                            <div class="bg-neutral-900 p-4 rounded-xl border border-white/10">
+                                <span class="block text-xs text-white/50 uppercase tracking-widest mb-1">DATA</span>
+                                <span class="font-urban text-2xl text-brand-yellow">13 / Junho</span>
+                            </div>
+                            <div class="bg-neutral-900 p-4 rounded-xl border border-white/10">
+                                <span class="block text-xs text-white/50 uppercase tracking-widest mb-1">HORÁRIO</span>
+                                <span class="font-urban text-2xl text-brand-yellow">13h às 17h30</span>
+                            </div>
+                            <div class="bg-neutral-900 p-4 rounded-xl border border-white/10">
+                                <span class="block text-xs text-white/50 uppercase tracking-widest mb-1">LOCALIDAEDE</span>
+                                <span class="font-urban text-2xl text-brand-yellow">AGUDOS-SP | Jd. Márcia</span>
+                            </div>
+                        </div>
+
+                        <!-- Descrição Impactante -->
+                        <div class="mb-8">
+                            <h4 class="text-lg font-bold text-white mb-2">Desperte para o extraordinário</h4>
+                            <p class="text-neutral-300 text-sm leading-relaxed">
+                                Prepare-se para viver uma tarde de despertar, propósito e paixão por missões. Serão 5 horas intensas de palavra, oração, adoração e ativação missionária, buscando aquilo que está no coração de Deus para esta geração. Uma conferência para aqueles que se recusam a viver um evangelho superficial.
+                            </p>
+                        </div>
+
+                        <!-- Cronograma com Linha do Tempo Estilizada -->
+                        <div class="mb-8 border-t border-white/10 pt-8">
+                            <h4 class="text-xs font-black tracking-widest uppercase text-brand-yellow mb-6">Cronograma Oficial</h4>
+                            
+                            <!-- Grid do Cronograma -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 text-sm">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">12:45</span>
+                                    <span class="text-neutral-300">Abertura e Credenciamento</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">13:10</span>
+                                    <span class="text-neutral-300">Clamor Inicial (Oração)</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">13:20</span>
+                                    <span class="text-neutral-300">Adoração e Louvor Coletivo</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">13:45</span>
+                                    <span class="text-neutral-300">Palavra de Despertamento</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">14:50</span>
+                                    <span class="text-neutral-300">Café da tarde / Comunhão</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">15:15</span>
+                                    <span class="text-neutral-300">Bate-papo Prático sobre Missões</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">16:20</span>
+                                    <span class="text-neutral-300">Palavra de Envio e Ativação</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="font-urban text-lg text-brand-yellow bg-white/5 px-2 py-0.5 rounded">17h30</span>
+                                    <span class="text-neutral-300">Encerramento</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Endereço com Link de GPS de alta visibilidade -->
+                        <div class="flex items-start gap-3 bg-neutral-900/60 p-4 rounded-xl border border-white/5 text-xs text-neutral-400">
+                            <svg class="w-5 h-5 text-brand-yellow shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <div>
+                                <strong class="text-white block mb-0.5">Endereço do Local:</strong>
+                                Av. Said Handen, 230 - Jd. Marcia - Agudos, SP
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botão CTA Final da Conferência -->
+                    <div class="mt-8 pt-6 border-t border-white/10">
+                        <a href="#inscricao" class="inline-flex items-center gap-3 bg-brand-yellow hover:bg-brand-yellowDark text-brand-black font-black uppercase tracking-wider text-sm px-8 py-4 rounded-md shadow-lg shadow-brand-yellow/15 transition-all transform hover:-translate-y-0.5 w-full sm:w-auto text-center justify-center">
+                            Garantir Minha Vaga na Conferência
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: QUEM SOMOS & MANIFESTO -->
+    <section id="manifesto" class="py-24 bg-brand-black text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Lado Esquerdo: Grande Frase de Manifesto e Vídeo/Card Visual -->
+                <div class="lg:col-span-5">
+                    <span class="text-brand-yellow text-sm font-black uppercase tracking-widest block mb-4">NOSSO MANIFESTO</span>
+                    <h3 class="font-urban text-5xl sm:text-6xl md:text-7xl leading-none uppercase mb-6">
+                        "NÃO SOMOS CHAMADOS PARA NOS CONFORMAR,<br>
+                        <span class="text-brand-yellow italic brush-highlight">MAS PARA TRANSFORMAR!"</span>
+                    </h3>
+                    
+                    <p class="text-neutral-400 text-sm sm:text-base leading-relaxed mb-8">
+                        Se existe um desejo no seu coração de fazer mais para Deus, servir pessoas e viver o IDE de Jesus com intensidade, a Escola de Missões Inconformados é o lugar certo para você.
+                    </p>
+
+                    <!-- Selo Tradicional no Box -->
+                    <div class="border border-white/10 p-6 rounded-xl bg-brand-grayDark/30">
+                        <p class="font-semibold text-white text-base italic">
+                            "A escola é um lugar de crescimento espiritual, de ativação do seu propósito e transbordo para a glória de Deus."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: História da Escola & 4 Pilares -->
+                <div class="lg:col-span-7">
+                    <div class="bg-brand-grayDark/50 border border-white/5 p-8 sm:p-10 rounded-2xl">
+                        <!-- Quem Somos Base Text -->
+                        <h4 class="text-xl font-bold text-white mb-4">Quem somos nós?</h4>
+                        <p class="text-neutral-300 text-sm sm:text-base leading-relaxed mb-8">
+                            A Escola de Missões Inconformados nasceu com o ordem de levantar uma geração apaixonada por Jesus, comprometida em viver o Evangelho de forma prática e transformadora. Somos uma escola que une ensino bíblico, oração, evangelismo e missões urbanas, preparando pessoas para impactarem cidades, nações e vidas através do amor de Cristo. Mais do que uma escola, somos um movimento de inconformados com este mundo, que acreditam que uma mente transformada pode gerar uma cidade transformada. Nossa missão é despertar chamados, fortalecer a fé e capacitar pessoas para viverem o IDE de Jesus dentro e fora da igreja.
+                        </p>
+
+                        <!-- Os 4 Pilares da Escola -->
+                        <h4 class="text-xs font-black tracking-widest text-brand-yellow uppercase mb-6">Pilares de Sustentação</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            
+                            <!-- Pilar 1 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 flex items-center justify-center border border-brand-yellow/20 text-brand-yellow shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white text-base">Ensino Bíblico</h5>
+                                    <p class="text-xs text-neutral-400 mt-1">Aprofundamento na Palavra para uma fé sólida, viva e baseada nas Escrituras.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pilar 2 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 flex items-center justify-center border border-brand-yellow/20 text-brand-yellow shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white text-base">Oração e Vida Espiritual</h5>
+                                    <p class="text-xs text-neutral-400 mt-1">Momentos profundos de comunhão com o Pai que moldam o caráter e o chamado.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pilar 3 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 flex items-center justify-center border border-brand-yellow/20 text-brand-yellow shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white text-base">Evangelismo Urbano</h5>
+                                    <p class="text-xs text-neutral-400 mt-1">Ferramentas e práticas nas ruas para levar a esperança até onde as pessoas estão.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pilar 4 -->
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 flex items-center justify-center border border-brand-yellow/20 text-brand-yellow shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-white text-base">Relacionamentos</h5>
+                                    <p class="text-xs text-neutral-400 mt-1">Mentoria, vida em comunidade verdadeira e conexões eternas para a jornada.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: FRENTES DE ATUAÇÃO E ATIVIDADES -->
+    <section id="frentes" class="py-24 bg-brand-grayDark text-white relative border-t border-b border-white/5">
+        <div class="absolute inset-0 grid-bg opacity-10 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Cabeçalho -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-yellow text-sm font-black uppercase tracking-widest block mb-2">Treinamento Prático</span>
+                <h2 class="font-urban text-5xl sm:text-7xl uppercase">FORMAÇÃO MISSIONÁRIA NA PRÁTICA</h2>
+                <p class="text-neutral-400 text-sm sm:text-base mt-4 font-light">
+                    A formação vai além da sala de aula. Desenvolvemos alunos preparados espiritualmente, emocionalmente e fisicamente para atuarem com maestria e empatia em todas as camadas sociais.
+                </p>
+                <div class="w-24 h-1.5 bg-brand-yellow mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <!-- As 4 Grandes Frentes de Atuação (Cards interativos que acendem no hover) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                
+                <!-- Frente 1 -->
+                <div class="bg-brand-black p-8 rounded-2xl border border-white/10 hover:border-brand-yellow transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-yellow text-brand-black font-black font-urban text-3xl flex items-center justify-center rounded-xl mb-6 shadow-md">
+                            01
+                        </div>
+                        <h4 class="text-xl font-bold tracking-wide uppercase text-white group-hover:text-brand-yellow transition-colors">Evangelismo Urbano</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed mt-3">
+                            Aprenda abordagens criativas e impactantes no meio das praças, transporte público e eventos culturais locais.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Frente 2 -->
+                <div class="bg-brand-black p-8 rounded-2xl border border-white/10 hover:border-brand-yellow transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-yellow text-brand-black font-black font-urban text-3xl flex items-center justify-center rounded-xl mb-6 shadow-md">
+                            02
+                        </div>
+                        <h4 class="text-xl font-bold tracking-wide uppercase text-white group-hover:text-brand-yellow transition-colors">Visitas Missionárias</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed mt-3">
+                            Entre em lares e locais vulneráveis levando uma palavra viva de esperança, amor fraternal, reconciliação e oração pastoral.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Frente 3 -->
+                <div class="bg-brand-black p-8 rounded-2xl border border-white/10 hover:border-brand-yellow transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-yellow text-brand-black font-black font-urban text-3xl flex items-center justify-center rounded-xl mb-6 shadow-md">
+                            03
+                        </div>
+                        <h4 class="text-xl font-bold tracking-wide uppercase text-white group-hover:text-brand-yellow transition-colors">Ação Social</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed mt-3">
+                            Mãos estendidas e doação real. Servimos as necessidades básicas do próximo para abrir caminhos para o testemunho da verdade.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Frente 4 -->
+                <div class="bg-brand-black p-8 rounded-2xl border border-white/10 hover:border-brand-yellow transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-yellow text-brand-black font-black font-urban text-3xl flex items-center justify-center rounded-xl mb-6 shadow-md">
+                            04
+                        </div>
+                        <h4 class="text-xl font-bold tracking-wide uppercase text-white group-hover:text-brand-yellow transition-colors">Treinamento Contínuo</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed mt-3">
+                            Mentoria integral para que o campo de missão se torne parte essencial da sua identidade diária em qualquer profissão.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Laboratórios Práticos / Atividades Realizadas (Tags de impacto) -->
+            <div class="bg-brand-black/40 border border-white/5 p-8 sm:p-12 rounded-3xl">
+                <!-- Citação de Fechamento em Letra Grande -->
+                <div class="text-center flex-col justify-center align-center">
+                    <p class="font-urban text-3xl sm:text-4xl text-brand-yellow uppercase tracking-wider">
+                        "Ide por todo o mundo, pregai o evangelho a toda criatura."
+                    </p>
+                    <span class="text-xs text-white/50 tracking-widest uppercase block mt-1">Marcos 16:15</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: GRADE CURRICULAR (MÓDULOS) -->
+    <section id="grade" class="py-24 bg-brand-black text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Coluna Esquerda: Informações Letivas -->
+                <div class="lg:col-span-4 lg:sticky lg:top-28">
+                    <span class="text-brand-yellow text-sm font-black uppercase tracking-widest block mb-2">Preparação Completa</span>
+                    <h2 class="font-urban text-5xl sm:text-6xl uppercase mb-6">O que você vai aprender:</h2>
+                    
+                    <p class="text-neutral-400 text-sm leading-relaxed mb-8">
+                        Estruturamos nossa grade para cobrir desde os fundamentos bíblicos históricos até os aspectos comportamentais e sociológicos do evangelismo moderno nas grandes e pequenas cidades.
+                    </p>
+
+                    <!-- Card com Período Letivo -->
+                    <div class="bg-brand-grayDark p-6 rounded-2xl border border-brand-yellow/30 relative overflow-hidden">
+                        <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-brand-yellow/10 rounded-full blur-xl"></div>
+                        
+                        <h4 class="text-xs font-black tracking-widest text-brand-yellow uppercase mb-4">Informações de Período</h4>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-neutral-400">Aulas</span>
+                                <span class="font-bold text-white">Sábados</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-neutral-400">Horário</span>
+                                <span class="font-bold text-white">13h30 às 17h</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="text-neutral-400">Início das Aulas</span>
+                                <span class="font-bold text-white">28/02/2026</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-neutral-400">Término letivo</span>
+                                <span class="font-bold text-white">04/07/2026</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Direita: Lista de Disciplinas -->
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <!-- Disciplina 1 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">O que é a Missão</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Fundamentação e o plano divino original para a salvação e serviço.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 2 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Cosmovisão Missionária</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Como ler a sociedade e as transformações sob a ótica das Escrituras.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 3 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Tribos Urbanas</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Compreensão dos subgrupos modernos e suas respectivas culturas na cidade.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 4 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Estratégias de Abordagem</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Metodologia e aproximação assertiva de evangelismo pessoal com respeito e amor.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 5 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Missões Transculturais</h4>
+                                <p class="text-xs text-neutral-400 mt-1">A preparação para atuar além das barreiras de língua, tradição e geografia.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 6 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Justiça Social</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Doutrina do cuidado, amparo aos órfãos, viúvas e necessitados do nosso tempo.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 7 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Capelania Prática</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Atendimento humanitário em hospitais, asilos, prisões e centros escolares.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 8 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Crianças com Vulnerabilidade</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Táticas de acolhimento e pedagogia cristã para o público infantil carente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 9 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">A Grande Comissão</h4>
+                                <p class="text-xs text-neutral-400 mt-1">O IDE como vocação prioritária aplicável à vida civil, acadêmica e profissional.</p>
+                            </div>
+                        </div>
+
+                        <!-- Disciplina 10 -->
+                        <div class="bg-neutral-900/60 p-5 rounded-xl border border-white/5 flex gap-4 items-start hover:border-brand-yellow/40 transition-colors">
+                            <div class="text-brand-yellow shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">Sexualidade & Família</h4>
+                                <p class="text-xs text-neutral-400 mt-1">Abordagem pastoral bíblica e acolhimento das pautas da sociedade contemporânea.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: INFORMAÇÕES DE INSCRIÇÃO & CONTATOS -->
+    <section id="inscricao" class="py-24 bg-brand-grayDark/80 border-t border-white/5 relative">
+        <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+                
+                <!-- Formulário de Inscrição Interativo (Lado Esquerdo) -->
+                <div class="lg:col-span-7 bg-brand-black p-8 sm:p-12 rounded-3xl border border-brand-yellow/30 flex flex-col justify-between shadow-2xl relative">
+                    <div>
+                        <div class="mb-8">
+                            <span class="text-brand-yellow text-sm font-black uppercase tracking-widest block">Inicie Sua Jornada</span>
+                            <h3 class="font-urban text-4xl sm:text-5xl uppercase mt-1">FAÇA SUA MATRÍCULA</h3>
+                            <p class="text-xs text-neutral-400 mt-2">
+                                Preencha os campos abaixo para iniciar o processo seletivo oficial de inscrição para o período de 2026.
+                            </p>
+                        </div>
+
+                        <!-- Form -->
+                        <form id="enrollment-form" onsubmit="handleEnrollmentSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- Nome -->
+                                <div>
+                                    <label for="name" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">Nome Completo *</label>
+                                    <input type="text" id="name" required class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                                </div>
+                                <!-- WhatsApp -->
+                                <div>
+                                    <label for="phone" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">WhatsApp / Celular *</label>
+                                    <input type="tel" id="phone" placeholder="(14) 99999-9999" required class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <!-- E-mail -->
+                                <div>
+                                    <label for="email" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">Seu Melhor E-mail *</label>
+                                    <input type="email" id="email" required class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                                </div>
+                                <!-- Cidade -->
+                                <div>
+                                    <label for="city" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">Cidade de Residência *</label>
+                                    <input type="text" id="city" required class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                                </div>
+                            </div>
+
+                            <!-- Seleção de Interesse -->
+                            <div>
+                                <label for="interest" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">Qual seu interesse primordial? *</label>
+                                <select id="interest" required class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors">
+                                    <option value="" disabled selected>Selecione uma opção</option>
+                                    <option value="escola_apenas">Apenas Escola de Missões 2026</option>
+                                    <option value="conferencia_apenas">Apenas Conferência Missionária (13/06)</option>
+                                </select>
+                            </div>
+
+                            <!-- Mensagem Extra / Motivo -->
+                            <div>
+                                <label for="message" class="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">Por que você quer fazer essa escola? (Opcional)</label>
+                                <textarea id="message" rows="3" placeholder="Conte brevemente sobre o desejo do seu coração..." class="w-full bg-brand-grayDark border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-brand-yellow transition-colors resize-none"></textarea>
+                            </div>
+
+                            <!-- Botão enviar -->
+                            <button type="submit" class="w-full bg-brand-yellow hover:bg-brand-yellowDark text-brand-black font-black uppercase tracking-widest text-sm py-4 rounded-lg shadow-lg shadow-brand-yellow/15 transition-all transform hover:scale-[1.01] active:scale-95">
+                                Finalizar Inscrição
+                            </button>
+                        </form>
+
+                        <!-- Box de Sucesso Customizado (Substitui o alert tradicional) -->
+                        <div id="success-box" class="hidden absolute inset-0 bg-brand-black rounded-3xl p-8 sm:p-12 flex flex-col justify-center items-center text-center z-30">
+                            <div class="w-20 h-20 bg-brand-yellow/10 text-brand-yellow border border-brand-yellow/30 rounded-full flex items-center justify-center text-4xl mb-6">
+                                ✓
+                            </div>
+                            <h4 class="font-urban text-4xl text-white uppercase mb-2">INSCRIÇÃO ENVIADA COM SUCESSO!</h4>
+                            <p class="text-sm text-neutral-400 max-w-md mx-auto mb-8">
+                                Deus abençoe! Seus dados foram encaminhados à coordenação da Escola de Missões Inconformados. Logo entraremos em contato via WhatsApp para concluir os próximos passos.
+                            </p>
+                            <button onclick="resetEnrollmentForm()" class="bg-brand-yellow hover:bg-brand-yellowDark text-brand-black font-black uppercase tracking-widest text-xs px-6 py-3 rounded">
+                                Fazer Outra Inscrição
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: Chamada de Impacto + Informações de Contato -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    <div>
+                        <!-- Box de Impacto -->
+                        <div class="bg-brand-black p-8 rounded-3xl border border-white/10 mb-8">
+                            <span class="text-xs text-neutral-500 uppercase tracking-widest font-bold">O Chamado Real</span>
+                            <blockquote class="text-xl font-bold text-white leading-relaxed mt-4">
+                                "Onde você estará quando o avivamento atingir as ruas? Não deixe para depois a convocação que Deus está fazendo hoje. Venha viver esse novo tempo conosco."
+                            </blockquote>
+                        </div>
+
+                        <!-- Canais de Contato com Ações Rápidas -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-black tracking-widest text-brand-yellow uppercase mb-4">Informações de Contato</h4>
+                            
+                            <!-- WhatsApp Link -->
+                            <a href="https://wa.me/5514991292340" target="_blank" class="flex items-center gap-4 bg-brand-black/60 p-4 rounded-xl border border-white/5 hover:border-brand-yellow/30 transition-colors">
+                                <div class="w-10 h-10 rounded-lg bg-green-500/10 text-green-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.436 0 9.86-4.37 9.864-9.75.002-2.607-1.01-5.058-2.85-6.902C16.428 2.109 13.991 1.093 11.4 1.093c-5.441 0-9.865 4.37-9.87 9.75-.002 1.942.512 3.84 1.488 5.56l-.974 3.557 3.655-.952a9.82 9.82 0 0 0 4.358 1.146z"></path>
+                                    </svg>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="block text-white/50 uppercase tracking-widest mb-0.5">WhatsApp Oficial</span>
+                                    <strong class="text-sm text-white hover:text-brand-yellow transition-colors">(14) 99129-2340</strong>
+                                </div>
+                            </a>
+
+                            <!-- E-mail Direct Copy -->
+                            <div onclick="copyText('inconformados.escola@gmail.com', 'email-copy-badge')" class="flex items-center gap-4 bg-brand-black/60 p-4 rounded-xl border border-white/5 hover:border-brand-yellow/30 transition-colors cursor-pointer relative group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="block text-white/50 uppercase tracking-widest mb-0.5">E-mail de Contato (Clique p/ copiar)</span>
+                                    <strong class="text-sm text-white group-hover:text-brand-yellow transition-colors">inconformados.escola@gmail.com</strong>
+                                </div>
+                                <span id="email-copy-badge" class="absolute right-4 top-1/2 -translate-y-1/2 bg-brand-yellow text-brand-black font-black text-[10px] px-2.5 py-1 rounded uppercase tracking-wider scale-0 transition-transform duration-200">Copiado!</span>
+                            </div>
+
+                            <!-- Instagram Link -->
+                            <a href="https://instagram.com/inconformados_escolademissoes" target="_blank" class="flex items-center gap-4 bg-brand-black/60 p-4 rounded-xl border border-white/5 hover:border-brand-yellow/30 transition-colors">
+                                <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="text-xs">
+                                    <span class="block text-white/50 uppercase tracking-widest mb-0.5">Siga no Instagram</span>
+                                    <strong class="text-sm text-white hover:text-brand-yellow transition-colors">@inconformados_escolademissoes</strong>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Endereço Fisico e GPS Link -->
+                    <div class="mt-8 pt-8 border-t border-white/10 flex items-center gap-4">
+                        <span class="text-3xl shrink-0"> <img src="https://img.icons8.com/?size=30&id=0sTmBjAQDKfi&format=png&color=E5A910" alt="icon-loc"></span>
+                        <div class="text-xs text-neutral-400">
+                            <strong class="text-white block mb-0.5">Sede Administrativa / Atividades:</strong>
+                            Av. Said Handen, 230 - Jd. Marcia - Agudos, SP
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER / RODAPÉ -->
+    <footer class="bg-brand-black text-white border-t border-white/10 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                
+                <!-- Logotipo e Slogan -->
+                <div class="flex items-center gap-3">
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <!-- Triângulo Invertido de Fundo -->
+                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-brand-yellow fill-current">
+                            <polygon points="10,20 90,20 50,90"/>
+                        </svg>
+                        <!-- Silhueta da Igreja e Prédios Urbanos com Cruz -->
+                        <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-white fill-current p-1.5 z-10">
+                            <rect x="25" y="45" width="10" height="25" />
+                            <path d="M 43 35 L 50 25 L 57 35 L 57 70 L 43 70 Z" />
+                            <rect x="49" y="15" width="2" height="11" class="text-white fill-current" />
+                            <rect x="46" y="18" width="8" height="2" class="text-white fill-current" />
+                            <path d="M 47 62 A 3 3 0 0 1 53 62 L 53 70 L 47 70 Z" class="text-brand-black fill-current" />
+                            <rect x="61" y="38" width="14" height="32" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col text-left">
+                        <span class="font-urban text-2xl tracking-wider text-brand-yellow leading-none">INCONFORMADOS</span>
+                        <span class="font-sans text-[10px] font-bold tracking-[0.25em] text-white/80 leading-tight">ESCOLA DE MISSÕES</span>
+                    </div>
+                </div>
+
+                <!-- Copyright e Direitos -->
+                <div class="text-center md:text-right text-xs text-neutral-500">
+                    <p class="mb-1">&copy; 2026 Escola de Missões Inconformados. Todos os direitos reservados.</p>
+                    <p>Feito para propagar o Reino de Deus e incendiar cidades. <strong>Desenvolvido por <a href="https://www.instagram.com/primolanwebdev/">PrimolanWebDev</a></strong></p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+<script src="script.js"></script>
+</body>
+</html>

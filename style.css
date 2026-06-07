@@ -1,0 +1,26 @@
+ /* Estilos e animações adicionais de textura urbana */
+        .grid-bg {
+            background-image: linear-gradient(rgba(229, 169, 16, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(229, 169, 16, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .urban-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .brush-highlight {
+            position: relative;
+            z-index: 1;
+        }
+        .brush-highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 4px;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(229, 169, 16, 0.3);
+            z-index: -1;
+            transform: skewX(-15deg);
+           
+        }
